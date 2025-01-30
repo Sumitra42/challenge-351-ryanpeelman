@@ -3,13 +3,14 @@ import { Dictionary, values } from "lodash";
 import { FacilityModel, ShiftModel, WorkerModel } from "../data/models";
 import { ShiftsRepository } from "./shifts.repository";
 import { groupByDate, isWithinDateRange } from "./shifts.utilities";
+import { PrismaService } from "src/prisma.service";
 
 @Injectable()
 export class ShiftsService {
   private logger: Logger;
   private repostiory: ShiftsRepository;
 
-  constructor(repository: ShiftsRepository) {
+  constructor(repository: ShiftsRepository, private readonly prisma: PrismaService) {
     this.logger = new Logger();
     this.repostiory = repository;
   }
